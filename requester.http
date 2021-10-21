@@ -1,0 +1,17 @@
+###
+GET http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "username": "yusuf"
+}
+
+### Register New User
+POST http://localhost:5000/users/register
+Content-Type: application/json
+
+{
+    "first_name": "",
+}
+
+
