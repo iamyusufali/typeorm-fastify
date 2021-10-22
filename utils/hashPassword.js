@@ -1,6 +1,6 @@
+const utils = require('util');
 const crypto = require('crypto');
-const promisify = require('./promisify');
-const pbkdf2 = promisify(crypto.pbkdf2);
+const pbkdf2 = utils.promisify(crypto.pbkdf2);
 
 const OPTIONS = {
   iterations: 27500,
@@ -11,19 +11,23 @@ const OPTIONS = {
 const hashPassword = async (password, salt) => {
   const { iterations, keylen, digest } = OPTIONS;
 
-  const promise = new Promise((resolve) =>
-    resolve(Buffer.from(salt, 'base64'))
-  );
+  try {
+    const saltBuffer = Buffer.from(salt, 'base64');
+    const hashBuffer = await pbkdf2(
+      String(password),
+      saltBuffer,
+      iterations,
+      keylen,
+      digest
+    );
 
-  return promise
-    .then((saltBuf) => {
-      salt = saltBuf.toString('base64');
-      return pbkdf2(String(password), saltBuf, iterations, keylen, digest);
-    })
-    .then((buf) => {
-      const hash = buf.toString('base64');
-      return hash;
-    });
+    const hashValue = hashBuffer.toString('base64');
+    const saltValue = saltBuffer.toString('base64');
+
+    return { hash: hashValue, salt: saltValue };
+  } catch (error) {
+    throw Error(error);
+  }
 };
 
 hashPassword('password', 'ffOxaNmO/r5qBmLLHEE1OQ==').then((hash) =>
