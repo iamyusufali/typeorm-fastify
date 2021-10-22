@@ -8,6 +8,8 @@ const OPTIONS = {
   digest: 'sha256',
 };
 
+const generateSalt = (bytes) => crypto.randomBytes(bytes);
+
 const hashPassword = async (password, salt) => {
   const { iterations, keylen, digest } = OPTIONS;
 
@@ -30,6 +32,8 @@ const hashPassword = async (password, salt) => {
   }
 };
 
-hashPassword('password', 'ffOxaNmO/r5qBmLLHEE1OQ==').then((hash) =>
+hashPassword('strong@7_password', generateSalt(16)).then((hash) =>
   console.log(hash)
 );
+
+module.exports = { hashPassword, generateSalt };

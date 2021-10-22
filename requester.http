@@ -3,7 +3,7 @@ GET http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "username": "demoTwo"
+    "username": "cristiano7"
 }
 
 ### Register New User
