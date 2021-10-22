@@ -1,18 +1,22 @@
 ###
-GET http://localhost:5000/users
+GET http://localhost:5000/userData
 Content-Type: application/json
 
 {
-    "username": "cristiano7"
+    "username": "demoone"
 }
 
 ### Register New User
-POST http://localhost:5000/users/register
+POST http://localhost:5000/user/register
 Content-Type: application/json
 
 {
-    "username": "Test",
-    "password": "password"
+    "email": "Test",
+    "first_name": "Test",
+    "last_name": "Test",
+    "username": "Test"
 }
 
+### DELETE A User
+DELETE http://localhost:5000/user/1cd351b2-2ff0-9b3f-d8930fbd3199
 
