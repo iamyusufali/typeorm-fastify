@@ -8,11 +8,11 @@ const OPTIONS = {
   digest: 'sha256',
 };
 
-const myHasher = async (password) => {
+const hashPassword = async (password, salt) => {
   const { iterations, keylen, digest } = OPTIONS;
 
   const promise = new Promise((resolve) =>
-    resolve(Buffer.from('ffOxaNmO/r5qBmLLHEE1OQ==', 'base64'))
+    resolve(Buffer.from(salt, 'base64'))
   );
 
   return promise
@@ -26,4 +26,6 @@ const myHasher = async (password) => {
     });
 };
 
-myHasher('password').then((hash) => console.log(hash));
+hashPassword('password', 'ffOxaNmO/r5qBmLLHEE1OQ==').then((hash) =>
+  console.log(hash)
+);
