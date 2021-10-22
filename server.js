@@ -3,6 +3,7 @@ const app = express();
 
 const pgPool = require('./database/config');
 const PORT = process.env.PORT || 3000;
+const {} = require('./utils/hashPassword');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
