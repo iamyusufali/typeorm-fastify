@@ -2,10 +2,12 @@
   "name": "keycloak-user-mgmt",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon -r dotenv/config server.js"
+    "start": "node build/server.js",
+    "build": "tsc",
+    "clean": "tsc --build --clean && rm -rf build",
+    "dev": "nodemon src/server.ts"
   },
   "repository": {
     "type": "git",
@@ -20,12 +22,13 @@
   "homepage": "https://github.com/yusufali19/keycloak-user-mgmt#readme",
   "dependencies": {
     "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "pbkdf2-password-hash": "^2.0.0",
-    "pg": "^8.7.1",
+    "fastify": "^3.22.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.14"
+    "@types/node": "^16.11.4",
+    "nodemon": "^2.0.14",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
   }
 }
