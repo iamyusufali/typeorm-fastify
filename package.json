@@ -23,6 +23,9 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "fastify": "^3.22.1",
+    "fastify-typeorm-plugin": "^2.2.0",
+    "pg": "^8.7.1",
+    "typeorm": "^0.2.38",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
